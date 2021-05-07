@@ -1,0 +1,538 @@
+Address_Book Assignment
+
+				 UC 1
+				------
+
+Ability to create a Address Book Service Database.
+
+-->  mysql> create database
+    -> Address_Book_Service;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| address_book_service |
+| customers_info       |
+| information_schema   |
+| mysql                |
+| payroll_service      |
+| performance_schema   |
+| pets                 |
+| sys                  |
++----------------------+
+8 rows in set (0.01 sec)
+
+				UC 2
+			       ------
+
+Ability to create a Address Book Table with first and last names, address, city,
+stat, zip, phone number and email as its attributes.
+
+--> create table Adderss_Book (sr_no int primary key, first_name varchar (250), last_name varchar (250), address varchar (250), city varchar (250),  state varchar (250),  pincode int,  phone_number varchar (250), email nvarchar(250) );
+Query OK, 0 rows affected, 1 warning (0.13 sec)
+
+mysql> describe adderss_book;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| sr_no        | int          | NO   | PRI | NULL    |       |
+| first_name   | varchar(250) | YES  |     | NULL    |       |
+| last_name    | varchar(250) | YES  |     | NULL    |       |
+| address      | varchar(250) | YES  |     | NULL    |       |
+| city         | varchar(250) | YES  |     | NULL    |       |
+| state        | varchar(250) | YES  |     | NULL    |       |
+| pincode      | int          | YES  |     | NULL    |       |
+| phone_number | varchar(250) | YES  |     | NULL    |       |
+| email        | varchar(250) | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+9 rows in set (0.01 sec)
+
+
+				UC 3
+			       ------
+
+Ability to insert new Contacts to Address Book.
+
+-->
+
+INSERT INTO adderss_book ( sr_no, first_name, last_name, address, city, state, pincode, phone_number, email ) VALUES
+    -> ( '1', 'Rushi', 'Tayade', 'laxmi nagar', 'Amravati', 'Maharashtra', '444604', '9767451236', 'abc12@gmail.com' );
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from adderss_book;
++-------+------------+-----------+-------------+----------+-------------+---------+--------------+-----------------+
+| sr_no | first_name | last_name | address     | city     | state       | pincode | phone_number | email           |
++-------+------------+-----------+-------------+----------+-------------+---------+--------------+-----------------+
+|     1 | Rushi      | Tayade    | laxmi nagar | Amravati | Maharashtra |  444604 | 9767451236   | abc12@gmail.com |
++-------+------------+-----------+-------------+----------+-------------+---------+--------------+-----------------+
+1 row in set (0.00 sec)
+
+
+				UC 4
+			       ------
+
+Ability to edit existing contact person using their name.
+
+-->
+
+mysql> update adderss_book set phone_number = '9309765848' where first_name = 'Rushi';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from adderss_book;
++-------+------------+-----------+-------------+----------+-------------+---------+--------------+-----------------+
+| sr_no | first_name | last_name | address     | city     | state       | pincode | phone_number | email           |
++-------+------------+-----------+-------------+----------+-------------+---------+--------------+-----------------+
+|     1 | Rushi      | Tayade    | laxmi nagar | Amravati | Maharashtra |  444604 | 9309765848   | abc12@gmail.com |
++-------+------------+-----------+-------------+----------+-------------+---------+--------------+-----------------+
+1 row in set (0.00 sec)
+
+
+				UC 5
+			       ------
+
+Ability to delete a person using person's name.
+
+-->
+
+mysql> INSERT INTO adderss_book ( sr_no, first_name, last_name, address, city, state, pincode, phone_number, email ) VALUES
+    -> ( '2',  'Kartik', 'Kavi', 'shyam nagar', 'Akola', 'Maharashtra', '444605', '8797451236', 'xyz12@gmail.com' );
+    -> ( '3',  'Shashi', 'Ghebad', 'murtizapur', 'Akola', 'Maharashtra', '444608', '9175451236', 'pqr34@gmail.com' ),
+    -> ( '4',  'Akshay', 'Raut', 'Bardi', 'Nagpur', 'Maharashtra', '444612', '9864451236', 'dfe56@gmail.com' ),
+    -> ( '5',  'Aditya', 'Tekade', 'Talegaon', 'Pune', 'Maharashtra', '410512', '9024451236', 'hij96@gmail.com' );
+Query OK, 4 rows affected (0.01 sec)
+
+
+mysql> select * from adderss_book;
++-------+------------+-----------+-------------+----------+-------------+---------+--------------+-----------------+
+| sr_no | first_name | last_name | address     | city     | state       | pincode | phone_number | email           |
++-------+------------+-----------+-------------+----------+-------------+---------+--------------+-----------------+
+|     1 | Rushi      | Tayade    | laxmi nagar | Amravati | Maharashtra |  444604 | 9309765848   | abc12@gmail.com |
+|     2 | Kartik     | Kavi      | shyam nagar | Akola    | Maharashtra |  444605 | 8797451236   | xyz12@gmail.com |
+|     3 | Shashi     | Ghebad    | murtizapur  | Akola    | Maharashtra |  444608 | 9175451236   | pqr34@gmail.com |
+|     4 | Akshay     | Raut      | Bardi       | Nagpur   | Maharashtra |  444612 | 9864451236   | dfe56@gmail.com |
+|     5 | Aditya     | Tekade    | Talegaon    | Pune     | Maharashtra |  410512 | 9024451236   | hij96@gmail.com |
++-------+------------+-----------+-------------+----------+-------------+---------+--------------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from adderss_book where first_name = 'Aditya';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from adderss_book;
++-------+------------+-----------+-------------+----------+-------------+---------+--------------+-----------------+
+| sr_no | first_name | last_name | address     | city     | state       | pincode | phone_number | email           |
++-------+------------+-----------+-------------+----------+-------------+---------+--------------+-----------------+
+|     1 | Rushi      | Tayade    | laxmi nagar | Amravati | Maharashtra |  444604 | 9309765848   | abc12@gmail.com |
+|     2 | Kartik     | Kavi      | shyam nagar | Akola    | Maharashtra |  444605 | 8797451236   | xyz12@gmail.com |
+|     3 | Shashi     | Ghebad    | murtizapur  | Akola    | Maharashtra |  444608 | 9175451236   | pqr34@gmail.com |
+|     4 | Akshay     | Raut      | Bardi       | Nagpur   | Maharashtra |  444612 | 9864451236   | dfe56@gmail.com |
++-------+------------+-----------+-------------+----------+-------------+---------+--------------+-----------------+
+4 rows in set (0.00 sec)
+
+				UC 6
+			       ------
+
+Ability to Retrieve Person belonging to a City or State from the Address Book.
+
+-->
+
+mysql> select * from adderss_book where city = 'Akola';
++-------+------------+-----------+-------------+-------+-------------+---------+--------------+-----------------+
+| sr_no | first_name | last_name | address     | city  | state       | pincode | phone_number | email           |
++-------+------------+-----------+-------------+-------+-------------+---------+--------------+-----------------+
+|     2 | Kartik     | Kavi      | shyam nagar | Akola | Maharashtra |  444605 | 8797451236   | xyz12@gmail.com |
+|     3 | Shashi     | Ghebad    | murtizapur  | Akola | Maharashtra |  444608 | 9175451236   | pqr34@gmail.com |
++-------+------------+-----------+-------------+-------+-------------+---------+--------------+-----------------+
+2 rows in set (0.00 sec)
+
+
+mysql> select * from adderss_book where state = 'Maharashtra';
++-------+------------+-----------+-------------+----------+-------------+---------+--------------+-----------------+
+| sr_no | first_name | last_name | address     | city     | state       | pincode | phone_number | email           |
++-------+------------+-----------+-------------+----------+-------------+---------+--------------+-----------------+
+|     1 | Rushi      | Tayade    | laxmi nagar | Amravati | Maharashtra |  444604 | 9309765848   | abc12@gmail.com |
+|     2 | Kartik     | Kavi      | shyam nagar | Akola    | Maharashtra |  444605 | 8797451236   | xyz12@gmail.com |
+|     3 | Shashi     | Ghebad    | murtizapur  | Akola    | Maharashtra |  444608 | 9175451236   | pqr34@gmail.com |
+|     4 | Akshay     | Raut      | Bardi       | Nagpur   | Maharashtra |  444612 | 9864451236   | dfe56@gmail.com |
++-------+------------+-----------+-------------+----------+-------------+---------+--------------+-----------------+
+4 rows in set (0.00 sec)
+
+
+				UC 7
+			       ------
+
+Ability to understand the size of address book by City and State. (Here size indicates the count)
+
+-->
+
+----------------------+
+| Database             |
++----------------------+
+| address_book_service |
+| customers_info       |
+| information_schema   |
+| mysql                |
+| payroll_service      |
+| performance_schema   |
+| pets                 |
+| sys                  |
++----------------------+
+8 rows in set (0.00 sec)
+
+mysql> use address_book_service;
+Database changed
+mysql> select database();
++----------------------+
+| database()           |
++----------------------+
+| address_book_service |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++--------------------------------+
+| Tables_in_address_book_service |
++--------------------------------+
+| adderss_book                   |
++--------------------------------+
+1 row in set (0.00 sec)
+
+
+				UC 8
+			       ------
+
+Ability to retrieve entries sorted alphabetically by Person’s name for a given city.
+
+
+-->
+
+ select first_name from adderss_book where city = 'akola'
+    -> ;
++------------+
+| first_name |
++------------+
+| Kartik     |
+| Shashi     |
++------------+
+2 rows in set (0.01 sec)
+
+
+mysql> select first_name from adderss_book where state = 'Maharashtra' order by first_name;
++------------+
+| first_name |
++------------+
+| Akshay     |
+| Kartik     |
+| Rushi      |
+| Shashi     |
++------------+
+4 rows in set (0.03 sec)
+
+
+				UC 9
+			       ------
+
+Ability to identify each Address Book with name and Type.
+
+-->
+
+
+mysql> alter table adderss_book add adderss_book_name varchar(255) after sr_no;
+Query OK, 0 rows affected (0.19 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe adderss_book;
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| sr_no             | int          | NO   | PRI | NULL    |       |
+| adderss_book_name | varchar(255) | YES  |     | NULL    |       |
+| first_name        | varchar(250) | YES  |     | NULL    |       |
+| last_name         | varchar(250) | YES  |     | NULL    |       |
+| address           | varchar(250) | YES  |     | NULL    |       |
+| city              | varchar(250) | YES  |     | NULL    |       |
+| state             | varchar(250) | YES  |     | NULL    |       |
+| pincode           | int          | YES  |     | NULL    |       |
+| phone_number      | varchar(250) | YES  |     | NULL    |       |
+| email             | varchar(250) | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+10 rows in set (0.01 sec)
+
+mysql> alter table adderss_book add family varchar(255) after last_name;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table adderss_book add friends varchar(255) after family;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table adderss_book add profession varchar(255) after last_name;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe adderss_book;
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| sr_no             | int          | NO   | PRI | NULL    |       |
+| adderss_book_name | varchar(255) | YES  |     | NULL    |       |
+| first_name        | varchar(250) | YES  |     | NULL    |       |
+| last_name         | varchar(250) | YES  |     | NULL    |       |
+| profession        | varchar(255) | YES  |     | NULL    |       |
+| family            | varchar(255) | YES  |     | NULL    |       |
+| friends           | varchar(255) | YES  |     | NULL    |       |
+| address           | varchar(250) | YES  |     | NULL    |       |
+| city              | varchar(250) | YES  |     | NULL    |       |
+| state             | varchar(250) | YES  |     | NULL    |       |
+| pincode           | int          | YES  |     | NULL    |       |
+| phone_number      | varchar(250) | YES  |     | NULL    |       |
+| email             | varchar(250) | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+13 rows in set (0.01 sec)
+
+
+				UC 10
+			       -------
+
+Ability to get number of contact persons. (count by type).
+
+-->
+
+mysql> SELECT profession, COUNT(first_name) FROM adderss_book profession Group By profession;
++------------+-------------------+
+| profession | COUNT(first_name) |
++------------+-------------------+
+| Student    |                 4 |
++------------+-------------------+
+1 row in set (0.01 sec)
+
+
+				UC 11
+			       -------
+
+Ability to add person to both Friend and Family.
+
+-->
+
+mysql> update adderss_book set family = 'Nishikant' where first_name = 'Rushi';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update adderss_book set family = 'Aditya' where first_name = 'Kartik';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update adderss_book set family = 'Krishna' where first_name = 'Shashi';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update adderss_book set family = 'Kapil' where first_name = 'Akshay';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from adderss_book;
++-------+-------------------+------------+-----------+------------+-----------+---------+-------------+----------+-------------+---------+--------------+-----------------+
+| sr_no | adderss_book_name | first_name | last_name | profession | family    | friends | address     | city     | state       | pincode | phone_number | email           |
++-------+-------------------+------------+-----------+------------+-----------+---------+-------------+----------+-------------+---------+--------------+-----------------+
+|     1 | NULL              | Rushi      | Tayade    | Student    | Nishikant | NULL    | laxmi nagar | Amravati | Maharashtra |  444604 | 9309765848   | abc12@gmail.com |
+|     2 | NULL              | Kartik     | Kavi      | Student    | Aditya    | NULL    | shyam nagar | Akola    | Maharashtra |  444605 | 8797451236   | xyz12@gmail.com |
+|     3 | NULL              | Shashi     | Ghebad    | Student    | Krishna   | NULL    | murtizapur  | Akola    | Maharashtra |  444608 | 9175451236   | pqr34@gmail.com |
+|     4 | NULL              | Akshay     | Raut      | Student    | Kapil     | NULL    | Bardi       | Nagpur   | Maharashtra |  444612 | 9864451236   | dfe56@gmail.com |
++-------+-------------------+------------+-----------+------------+-----------+---------+-------------+----------+-------------+---------+--------------+-----------------+
+4 rows in set (0.01 sec)
+
+mysql> update adderss_book set friends = 'Subodh' where first_name = 'Rushi';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update adderss_book set friends = 'Nikhil' where first_name = 'Kartik';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update adderss_book set friends = 'Satyam' where first_name = 'Shashi';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update adderss_book set friends = 'Sanket' where first_name = 'Akshay';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from adderss_book;
++-------+-------------------+------------+-----------+------------+-----------+---------+-------------+----------+-------------+---------+--------------+-----------------+
+| sr_no | adderss_book_name | first_name | last_name | profession | family    | friends | address     | city     | state       | pincode | phone_number | email           |
++-------+-------------------+------------+-----------+------------+-----------+---------+-------------+----------+-------------+---------+--------------+-----------------+
+|     1 | NULL              | Rushi      | Tayade    | Student    | Nishikant | Subodh  | laxmi nagar | Amravati | Maharashtra |  444604 | 9309765848   | abc12@gmail.com |
+|     2 | NULL              | Kartik     | Kavi      | Student    | Aditya    | Nikhil  | shyam nagar | Akola    | Maharashtra |  444605 | 8797451236   | xyz12@gmail.com |
+|     3 | NULL              | Shashi     | Ghebad    | Student    | Krishna   | Satyam  | murtizapur  | Akola    | Maharashtra |  444608 | 9175451236   | pqr34@gmail.com |
+|     4 | NULL              | Akshay     | Raut      | Student    | Kapil     | Sanket  | Bardi       | Nagpur   | Maharashtra |  444612 | 9864451236   | dfe56@gmail.com |
++-------+-------------------+------------+-----------+------------+-----------+---------+-------------+----------+-------------+---------+--------------+-----------------+
+4 rows in set (0.01 sec)
+
+mysql>
+
+				Implementing ER diagram
+			       -------------------------
+
+create table address_books 
+(
+address_book_id int not null auto_increment primary key,
+address_book_name varchar(30) not null
+);
+desc address_books;
+
+create table contacts
+(
+contact_id int not null auto_increment primary key,
+first_name varchar(30) not null,
+last_name varchar(30),
+address varchar(50),
+city varchar(20),
+state varchar(20),
+zip_code int,
+phone_number varchar(30),
+email varchar(30)
+);
+desc contacts;
+
+create table contact_category
+(
+contact_category_id int not null auto_increment primary key,
+contact_category_name varchar(20)
+);
+desc contact_category;
+
+create table address_book_contacts_category
+(
+contact_id int not null,
+address_book_id int not null,
+contact_category_id int not null,
+foreign key (contact_id) references contacts(contact_id),
+foreign key (address_book_id) references address_books(address_book_id),
+foreign key (contact_category_id) references contact_category(contact_category_id)
+);
+desc address_book_contacts_category;
+
+
+					
+				INSERTING DATA AFTER NORMALIZATION
+			       -------------------------------------
+
+mysql> select database();
++--------------------+
+| database()         |
++--------------------+
+| adress_book_system |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++-------------------------------+
+| Tables_in_adress_book_system  |
++-------------------------------+
+| address_book_contact_category |
+| address_books                 |
+| contact_category              |
+| contacts                      |
++-------------------------------+
+4 rows in set (0.01 sec)
+
+mysql> desc contacts;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| contact_id   | int         | NO   | PRI | NULL    | auto_increment |
+| first_name   | varchar(30) | NO   |     | NULL    |                |
+| last_name    | varchar(30) | YES  |     | NULL    |                |
+| address      | varchar(50) | YES  |     | NULL    |                |
+| city         | varchar(20) | YES  |     | NULL    |                |
+| state        | varchar(20) | YES  |     | NULL    |                |
+| zip_code     | int         | YES  |     | NULL    |                |
+| phone_number | varchar(30) | YES  |     | NULL    |                |
+| email        | varchar(30) | YES  |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+9 rows in set (0.00 sec)
+
+mysql> insert into contacts (first_name, last_name, address, city, state, zip_code, phone_number, email) values
+   -> ('Kartik', 'Kavimandan', 'MG Nagar', 'Akola', 'MH', '444001', '9999999999', 'kartik123@gmail.com');
+   -> ('Rushi', 'Tayade', 'Laxmi Nagar', 'Amravati', 'MH', '444002', '8888888888', 'rushi123@gmail.com');
+   -> ('Adi', 'Roy', 'NN Nagar', 'Nagpur', 'KA', '444003', '7777777777', 'adi123@gmail.com');
+   -> ('Akshay', 'Raut', 'Viman Nagar', 'Pune', 'PU', '444004', '6666666666', 'akshay123@gmail.com');
+Query OK, 4 row affected (0.02 sec)
+
+mysql> select * from contacts;
++------------+------------+------------+-------------+----------+-------+----------+--------------+---------------------+
+| contact_id | first_name | last_name  | address     | city     | state | zip_code | phone_number | email               |
++------------+------------+------------+-------------+----------+-------+----------+--------------+---------------------+
+|          1 | Kartik     | Kavimandan | MG Nagar    | Akola    | MH    |   444001 | 9999999999   | kartik123@gmail.com |
+|          2 | Rushi      | Tayade     | Laxmi Nagar | Amravati | MH    |   444002 | 8888888888   | rushi123@gmail.com  |
+|          3 | Adi        | Roy        | NN Nagar    | Nagpur   | KA    |   444003 | 7777777777   | adi123@gmail.com    |
+|          4 | Akshay     | Raut       | Viman Nagar | Pune     | PU    |   444004 | 6666666666   | akshay123@gmail.com |
++------------+------------+------------+-------------+----------+-------+----------+--------------+---------------------+
+4 rows in set (0.01 sec)
+
+
+
+mysql> insert into address_books (address_book_name) values
+    -> ("Oberoi's_Book"),
+    -> ("Mickal's_Book");
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from address_books;
++-----------------+-------------------+
+| address_book_id | address_book_name |
++-----------------+-------------------+
+|               1 | Oberoi's_Book     |
+|               2 | Mickal's_Book     |
++-----------------+-------------------+
+2 rows in set (0.00 sec)
+
+
+
+mysql> insert into contact_category (contact_category_name) values
+    -> ('Friend'),
+    -> ('Family');
+    -> ('Neighbours');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+mysql> select * from contact_category;
++---------------------+-----------------------+
+| contact_category_id | contact_category_name |
++---------------------+-----------------------+
+|                   1 | Friend                |
+|                   2 | Family                |
+|                   3 | Neighbours            |
++---------------------+-----------------------+
+3 rows in set (0.01 sec)
+
+mysql> insert into address_book_contacts_category(contact_id,address_book_id,contact_category_id) values
+    -> (1,1,1),
+    -> (2,1,1),
+    -> (3,1,1),
+    -> (2,1,2),
+    -> (2,2,3),
+    -> (2,2,2),
+    -> (3,2,3);
+
+mysql> select * from address_book_contact_category;
++------------+-----------------+---------------------+
+| contact_id | address_book_id | contact_category_id |
++------------+-----------------+---------------------+
+|          1 |               1 |                   1 |
+|          2 |               1 |                   1 |
+|          3 |               1 |                   1 |
+|          2 |               1 |                   2 |
+|          2 |               2 |                   3 |
+|          2 |               2 |                   2 |
+|          3 |               2 |                   3 |
++------------+-----------------+---------------------+
+7 rows in set (0.00 sec)
+
+
+7 rows in set (0.00 sec)
+
+
+
+
